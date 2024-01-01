@@ -7,7 +7,7 @@ const Our: FC<Props> = ({ items }) => {
   return (
     <div className="project__wrapper">
       {items.map((el: any, index: number) => (
-        <ProjectItem type="our" el={el} key={index} />
+        <ProjectItem type="our" el={el} key={index} showSwitches={true} />
       ))}
     </div>
   );

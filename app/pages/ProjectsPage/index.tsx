@@ -11,6 +11,7 @@ import { ProjectsService } from "@/app/services/Projects.service";
 import Preloader from "@/app/components/Preloader/Preloader";
 import Search from "@/app/icons/Search";
 import { displaySuccessMessage } from "@/app/utils/helpers";
+import Projects from "@/pages/projects";
 interface Projects {
   [key: string]: any[]; // Здесь any[] может быть заменен на более конкретный тип, если у вас есть специфические данные
 }
@@ -35,7 +36,7 @@ const ProjectsPage = () => {
           filtered[category] = projects[category].filter((project: any) =>
             project.projectName
               .toLowerCase()
-              .includes(searchQuery.toLowerCase())
+              .includes(searchQuery.toLowerCase()),
           );
         }
         return filtered;

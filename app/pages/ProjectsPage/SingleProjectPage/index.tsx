@@ -46,7 +46,6 @@ const SingleProjectPage = ({ data }: any) => {
       setFileUploaded(true);
     }
   };
-
   const handleAddYoutubeLink = () => {
     if (youtubeLink.trim() !== "") {
       // Add YouTube link logic

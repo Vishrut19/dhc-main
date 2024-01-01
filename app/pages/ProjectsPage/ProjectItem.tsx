@@ -27,6 +27,7 @@ import our from "@/app/pages/ProjectsPage/Our";
 type Props = {
   el: any;
   type: string;
+  showSwitches?: boolean;
   //   changeStatus: Function;
 };
 const amentiesOptions = [
@@ -46,12 +47,13 @@ const amentiesOptions = [
   { icon: <Jogging />, title: "Jogging Track" },
   { icon: <Reserved />, title: "Reserved Parking" },
 ];
-const ProjectItem: FC<Props> = ({ el, type }) => {
+const ProjectItem: FC<Props> = ({ el, type, showSwitches }) => {
   const router = useRouter();
   const { isLoading, setIsLoading } = useLoadingContext();
   const [isTrending, setIsTrending] = useState(true);
   const [isFeatured, setIsFeatured] = useState(true);
 
+  console.log(el);
   const updateStatus = async (id: string, type: string, status: boolean) => {
     setIsLoading(true);
     try {
@@ -97,6 +99,7 @@ const ProjectItem: FC<Props> = ({ el, type }) => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   };
+
   return (
     <div className="project__item">
       <div className="project__item-card">
@@ -161,11 +164,11 @@ const ProjectItem: FC<Props> = ({ el, type }) => {
           </div>
           <div
             className={`project__item-content-right ${
-              type === "our" || el.status === "Approved" ? "no-space" : ""
+              type === "our" ? "no-space" : ""
             }`}
           >
             <span>{el.budget}</span>
-            {(type === "our" || el.status === "Approved") && (
+            {showSwitches && (
               <span className="project__item-switch">
                 <p>Trending</p>
                 <Switch checked={isTrending} onChange={handleTrendingChange} />

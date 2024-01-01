@@ -7,7 +7,12 @@ const Approved: FC<Props> = ({ items }) => {
   return (
     <div className="project__wrapper">
       {items.map((el: any, index: number) => (
-            <ProjectItem  type="default" el={el} key={index} ></ProjectItem>
+        <ProjectItem
+          type="default"
+          el={el}
+          key={index}
+          showSwitches={true}
+        ></ProjectItem>
       ))}
     </div>
   );
