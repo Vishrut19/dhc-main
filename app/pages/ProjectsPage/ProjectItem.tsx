@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import axios from "axios";
 import Location from "@/app/icons/Location";
 import Succes from "@/app/icons/Succes";
@@ -22,7 +22,8 @@ import Jogging from "@/app/icons/Jogging";
 import Reserved from "@/app/icons/Reserved";
 import { useLoadingContext } from "@/app/context/loading";
 import { ProjectsService } from "@/app/services/Projects.service";
-import {Switch} from "@mui/material";
+import { Switch } from "@mui/material";
+import our from "@/app/pages/ProjectsPage/Our";
 type Props = {
   el: any;
   type: string;
@@ -48,38 +49,45 @@ const amentiesOptions = [
 const ProjectItem: FC<Props> = ({ el, type }) => {
   const router = useRouter();
   const { isLoading, setIsLoading } = useLoadingContext();
-  const [isTrending, setIsTrending] = useState(!!el.isTrending);
-  const [isFeatured, setIsFeatured] = useState(!!el.isFeatured);
+  const [isTrending, setIsTrending] = useState(true);
+  const [isFeatured, setIsFeatured] = useState(true);
 
   const updateStatus = async (id: string, type: string, status: boolean) => {
     setIsLoading(true);
     try {
-      const response = await axios.post('https://dhc.shellcode.co.in/updateStatus.php', {
-        id: id,
-        type: type,
-        status: status
-      })
-    }catch (error) {
+      const response = await axios.post(
+        "https://dhc.shellcode.co.in/updateStatus.php",
+        {
+          id: id,
+          type: type,
+          status: status,
+        },
+      );
+    } catch (error) {
       console.error("Failed to fetch status", error);
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   // Handlers for switches
-  const handleTrendingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleTrendingChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const checked = event.target.checked;
-    console.log("Trending is toggled:", checked)
+    console.log("Trending is toggled:", checked);
     setIsTrending(checked);
-    updateStatus(el.id, "isTranding", checked);
-  }
+    await updateStatus(el.id, "isTranding", checked);
+  };
 
-  const handleFeaturedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFeaturedChange = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const checked = event.target.checked;
-    console.log("Featured is toggled:", checked)
+    console.log("Featured is toggled:", checked);
     setIsFeatured(checked);
-    updateStatus(el.id, "isFeatured", checked);
-  }
+    await updateStatus(el.id, "isFeatured", checked);
+  };
 
   const changeStatus = (status: string, id: string, e: any) => {
     e.preventDefault();
@@ -153,30 +161,26 @@ const ProjectItem: FC<Props> = ({ el, type }) => {
           </div>
           <div
             className={`project__item-content-right ${
-              type === "our" ? "no-space" : ""
+              type === "our" || el.status === "Approved" ? "no-space" : ""
             }`}
           >
             <span>{el.budget}</span>
-            <span className="project__item-switch">
-              <p>Trending</p>
-        <Switch
-            checked={isTrending}
-            onChange={handleTrendingChange}
-        />
-        <p>Featured</p>
-        <Switch
-            checked={isFeatured}
-            onChange={handleFeaturedChange}
-        />
-            </span>
+            {(type === "our" || el.status === "Approved") && (
+              <span className="project__item-switch">
+                <p>Trending</p>
+                <Switch checked={isTrending} onChange={handleTrendingChange} />
+                <p>Featured</p>
+                <Switch checked={isFeatured} onChange={handleFeaturedChange} />
+              </span>
+            )}
             {type === "default" && el.status === "Pending" ? (
-                <div className="project__item-btns">
-                  <button
-                      onClick={(e) => changeStatus("Approved", el.id, e)}
-                      className="btn"
-                  >
-                    Approve
-                  </button>
+              <div className="project__item-btns">
+                <button
+                  onClick={(e) => changeStatus("Approved", el.id, e)}
+                  className="btn"
+                >
+                  Approve
+                </button>
                 <button
                   onClick={(e) => changeStatus("Rejected", el.id, e)}
                   className="btn"
@@ -199,7 +203,7 @@ const ProjectItem: FC<Props> = ({ el, type }) => {
                 <div className=" project__item-our-right project__item-manager-posted">
                   Posted on:
                 </div>
-                <div project__item-our-right>{el["listed at"]}</div>
+                <div className="project__item-our-right">{el["listed at"]}</div>
                 <div className="project__item-our-right project__item-manager-posted">
                   Posted From:
                 </div>
