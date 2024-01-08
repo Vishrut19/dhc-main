@@ -1167,6 +1167,7 @@ h1, h2, h3, h4, h5 {
   color: black;
   font-weight: 500;
 }
+
 .project__item-content-our-right {
   font-size: 12px;
   font-weight: 500;
@@ -1243,12 +1244,20 @@ h1, h2, h3, h4, h5 {
   width: 210px;
   height: 210px;
 }
-.project__item-card-img img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+/*.project__item-card-img img {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  -o-object-fit: cover;*/
+/*     object-fit: cover;*/
+/*}*/
+
+@media (max-width: 768px) {
+  .project__item-card-img-big{
+    width: 150px;
+    height: 150px;
+  }
 }
+
 .project__item-manager {
   width: 25%;
   margin-left: 17px;

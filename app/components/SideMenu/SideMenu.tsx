@@ -6,6 +6,8 @@ import MenuProjects from "@/app/icons/MenuProjects";
 import MenuCustomers from "@/app/icons/MenuCustomers";
 import MenuBlogs from "@/app/icons/MenuBlogs";
 import MenuDashboard from "@/app/icons/MenuDashboard";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const menuList = [
   { title: "Dashboard", link: "/", icon: <MenuDashboard /> },
@@ -51,6 +53,7 @@ const menuList = [
 const SideMenu = () => {
   const [accesses, setAccesses] = useState<string[]>([]);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (
@@ -66,25 +69,39 @@ const SideMenu = () => {
       setIsAdmin(JSON.parse(String(localStorage.getItem("user")))?.isAdmin);
     }
   }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <div className="sidemenu">
-      <div className="sidemenu__wrapper">
-        <div className="sidemenu__logo">
-          <img src="/assets/images/logo.png" alt="DHC" />
+    <div>
+      <div className={`sidemenu ${isMenuOpen ? "open" : ""}`}>
+        <div className="sidemenu__wrapper">
+          <div className="sidemenu__logo">
+            <img src="/assets/images/logo.png" alt="DHC" />
+          </div>
+          <div className="sidemenu__list">
+            <ul>
+              {menuList.map((item, index) => {
+                if (
+                  isAdmin ||
+                  (accesses && accesses.includes(String(item.accessTitle)))
+                ) {
+                  return <MenuItem key={index} item={item} />;
+                }
+                return null;
+              })}
+            </ul>
+          </div>
         </div>
-        <div className="sidemenu__list">
-          <ul>
-            {menuList.map((item, index) => {
-              if (isAdmin) {
-                return <MenuItem key={index} item={item} />;
-              }
-              if (accesses?.includes(String(item.accessTitle))) {
-                return <MenuItem key={index} item={item} />;
-              }
-              return null;
-            })}
-          </ul>
-        </div>
+      </div>
+      <div className="menu-icon" onClick={toggleMenu}>
+        {isMenuOpen ? (
+          <CloseIcon style={{ color: "white", cursor: "pointer" }} />
+        ) : (
+          <MenuIcon style={{ color: "black", cursor: "pointer" }} />
+        )}
       </div>
     </div>
   );

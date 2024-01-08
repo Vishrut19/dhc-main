@@ -20,8 +20,8 @@ top:0;
 		// background-color: $dark;
 		// padding: 35px 35px 0px 37px;
 		// width:11%;
-		z-index: 100;	
-		
+		z-index: 100;
+
 	}
 	&__logo{
 		margin-bottom: 62px;
@@ -60,7 +60,7 @@ div{
 }
 svg{
 	margin-right: 15px;
-	
+
 	width:18px;
 	height: 18px;
 }
@@ -73,9 +73,11 @@ svg{
 			text-decoration: none;
 			}
 		}
-		
+
 	}
 }
+
+
 .active{
 	.sidemenu__icon{
 		path{
@@ -99,13 +101,13 @@ svg{
 	// 		stroke: $primary;
 	// 	}
 	// }
-	
+
 	// 	svg{
 	// 		transform: rotate(180deg);
 	// 		path{
 	// 			fill: $primary;
 	// 		}
-		
+
 	// }
 }
 // .activate{color:$primary!important;
@@ -125,3 +127,55 @@ svg{
 	margin-left: 10px;
 	margin-right: 0!important;
 }
+
+// Media query for small devices
+@media screen and (max-width: 768px) {
+	.sidemenu {
+		width: 0;
+		transition: width 0.3s ease, padding 0.3s ease;
+		overflow-x: hidden;
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		padding: 35px 0 0 0;
+		z-index: 100;
+
+		&.open {
+			width: 250px;
+			padding: 35px 35px 0 37px;
+		}
+	}
+
+	.menu-icon {
+		display: block;
+		position: fixed;
+		top: 20px;
+		left: 20px;
+		z-index: 101;
+		cursor: pointer;
+
+		svg {
+			font-size: 24px;
+		}
+
+		&.close {
+			svg {
+				font-size: 24px;
+			}
+		}
+	}
+}
+
+// Styles for larger screens
+@media screen and (min-width: 769px) {
+	.sidemenu {
+		width: 300px;
+		padding: 35px 35px 0 37px;
+	}
+
+	.menu-icon {
+		display: none;
+	}
+}
+
