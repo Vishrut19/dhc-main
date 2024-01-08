@@ -1,8 +1,18 @@
 .header{
 	display: flex;
 	justify-content: space-between;
-padding:25px 30px;
+	padding:25px 30px;
 	background-color: #fff;
+	@media (min-width: 768px) {
+		position: sticky;
+		top: 0;
+		z-index: 10;
+	}
+	&__left{
+		@media (max-width: 768px){
+			margin-left:20px;
+		}
+	}
 	&__profile{
 		display: none;
 		background-color: #fff;

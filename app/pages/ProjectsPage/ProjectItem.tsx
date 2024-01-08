@@ -103,11 +103,7 @@ const ProjectItem: FC<Props> = ({ el, type, showSwitches }) => {
   return (
     <div className="project__item">
       <div className="project__item-card">
-        <div
-          className={`project__item-card-img ${
-            type === "our" ? "project__item-card-img-big" : ""
-          }`}
-        >
+        <div className={`project__item-card-img`}>
           {" "}
           <img src={el.images} alt="" />
         </div>
