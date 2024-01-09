@@ -1,5 +1,8 @@
 .sblog{
 	max-width: 770px;
+	@media (max-width: 768px) {
+		max-width:370px
+	}
 	&__input{
 		width:96%!important;
 	}
@@ -40,7 +43,7 @@
 			span{
 				cursor: pointer;
 					margin-right: 16px;
-				
+
 			}
 		}
 		&-item{
@@ -51,7 +54,7 @@
 				font-size: 24px;
 				font-weight: 600;
 				margin-bottom: 20px;
-				
+
 			}
 			&-p{
 				font-size: 14px;
@@ -109,5 +112,5 @@
 		}
 	}
 
-	
+
 }

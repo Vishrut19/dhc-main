@@ -9,12 +9,16 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
+		@media(max-width: 768px){
+			transform: scale(0.6);
+			transform-origin:center;
+		}
 		&-back{
 			display: flex;
 			align-items: center;
-	cursor:pointer;
-		position: absolute;
-		left:-30%;
+			cursor:pointer;
+			position: absolute;
+			left:-30%;
 			font-size: 16px;
 			font-weight: 500;
 			color:black;
@@ -66,7 +70,7 @@
 					left:-100%;
 					background-color: black;
 				}
-			
+
 			}
 			&:last-child{
 				&:after{
@@ -106,9 +110,9 @@
 			color: #A0A0A0;
 
 		}
-		
-			
-		
+
+
+
 		}
 	}
 	&__section{
@@ -167,6 +171,9 @@ svg{
 			}
 			input{
 				width:86%;
+				@media (max-width:768px) {
+					width:80%;
+				}
 			}
 		}
 		&-step{
@@ -183,24 +190,25 @@ svg{
 			font-size: 28px;
 			font-weight: 700;
 			color:$dark-blue;
-		
+			@media (max-width: 768px) {
+				font-size: 25px;
+				justify-content: flex-start;
+			}
 			span {
 				display: block;
 				color:$primary;
 				margin-left: 10px;
 			}
-			
-
 		}
 		&-subtitle{
 			margin-top: 10px;
-		
+
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			font-size: 16px;
 			color:$dark-blue;
-		}	
+		}
 		&-wrapper{
 			display: flex;
 			flex-direction: column;
@@ -246,7 +254,7 @@ svg{
 	opacity: 0;
 	cursor: pointer;
   }
-  
+
   .checkmark {
 	position: absolute;
 	top: 0;
@@ -256,7 +264,7 @@ svg{
 	background-color: #D9D9D9;
 	border-radius: 2px;
   }
-  
+
   .custom-checkbox input:checked + .checkmark {
 	background-color: black;
   }

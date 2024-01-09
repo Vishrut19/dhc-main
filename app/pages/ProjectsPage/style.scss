@@ -6,10 +6,14 @@
 	&__item{
 		width:100%;
 		display: flex;
-		@media (max-width: 768px) {
-			display: flex;
+		&.mobile-layout{
 			flex-direction: column;
-			align-items: center;
+			&-card, &-manager{
+				width:100%;
+			}
+			&-manager{
+				order:2;
+			}
 		}
 		&-our-right{
 			&:first-child{
@@ -101,21 +105,11 @@
 			width:100%;
 			display: flex;
 			justify-content: space-between;
-			@media (max-width: 768px) {
+			@media (max-width: 768px){
 				flex-direction: column;
 				align-items: center;
-				width: 70%;
-			}
-			&-left, &-right {
-				@media (max-width: 768px) {
-					margin-top: 20px;
-					font-size:9px;
-				}
-			}
-			&-about{
-				@media (max-width: 768px) {
-					margin-top: 20px;
-					font-size: 9px;
+				&-left, &-right{
+					max-width: 100%;
 				}
 			}
 			&-our{
@@ -126,7 +120,6 @@
 					font-size:12px;
 					font-weight: 500;
 					color:$dark-blue;
-
 				}
 				&:not(:last-child){
 					margin-bottom: 17px;
@@ -195,7 +188,8 @@
 			padding:12px;
 			display: flex;
 			@media (max-width: 768px) {
-				width: 80%;
+				flex-direction: column;
+				align-items: center;
 			}
 			&-img{
 				width:138px;
@@ -225,8 +219,8 @@
 			color: #061426;
 			font-size: 12px;
 			@media (max-width: 768px) {
-				margin-top: 10px;
-				width: 40%;
+				width: 100%;
+				order: 2;
 			}
 			&-name{
 				margin-bottom: 16px;

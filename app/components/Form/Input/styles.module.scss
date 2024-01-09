@@ -3,12 +3,15 @@
   font-size: 12px;
   background: #ffffff;
   font-family: '__Montserrat_703af4', '__Montserrat_Fallback_703af4';
-
   border-radius: 6px;
   width: 94%;
   color: #0e0f31;
   padding: 12px 15px 12px 15px;
   border: 1px solid #9faab7;
+  @media (max-width:768px) {
+    width: 93%;
+    padding:12px;
+  }
   &Group {
     position: relative;
     svg {

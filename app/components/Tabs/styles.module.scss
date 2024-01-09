@@ -8,18 +8,11 @@
 	position:relative;
 	margin-bottom:35px;
 
-	@media (max-width: 768px) {
-		flex-direction: row;
-		align-items: center;
-		overflow-x:auto ;
-		-webkit-overflow-scrolling: touch;
-		scrollbar-width: none;
+	@media(max-width: 768px){
+		display: grid;
+		grid-template-columns: repeat(2,1fr);
+		grid-gap: 10px;
 	}
-
-	&::-webkit-scrollbar {
-		display: none;
-	}
-
 
 	& span{
 		transition: all .3s ease-in-out;
